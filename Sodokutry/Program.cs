@@ -101,7 +101,7 @@ namespace Sodoku
                             g = 8;
                             temp3 = cells[g];
                         }
-                        for(int i = 0; i < 1000; i++)
+                        for(int i = 0; i < 100000; i++)
                         {
                             
                                 int a = rnd.Next(0, temp1.Count);
@@ -121,6 +121,14 @@ namespace Sodoku
                                 rows[y].Remove(b1);
                                 cells[g].Remove(c1);
                                 Suck++;
+                                for(int h = 0; h < 9; h++)
+                                {
+                                    for(int k = 0; k < 9; k++)
+                                    {
+                                        Console.Write(board[h, k] + "\t");
+                                    }
+                                    Console.WriteLine();
+                                }
                                 
                                 Console.WriteLine("match");
                                 
