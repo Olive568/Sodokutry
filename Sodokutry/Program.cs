@@ -9,10 +9,16 @@ namespace Sodoku
     {
         static void Main(string[] args)
         {
+            int Suck = 0;
+            int g = 0;
+            List<int> temp3 = new List<int>();
+            List<int> temp2 = new List<int>();
+            List<int> temp1 = new List<int>();
             List<int>[] rows = new List<int>[9];
             List<int>[] cols = new List<int>[9];
             List<int>[] cells = new List<int>[9];
             int[,] board = new int[9, 9];
+            Random rnd = new Random();
             bool cont = true;
             int count = 0;
 
@@ -38,54 +44,95 @@ namespace Sodoku
             }
             while(cont)
             {
+                
                 cont = true;
                 for(int x = 0; x < 9; x++)
                 {
-                    List<int> temp1 = new List<int>();
+                    
                     temp1 = cols[x];
                     for (int y = 0; y < 9; y++)
                     {
-                        List<int> temp2 = new List<int>();
+                        
                         temp2 = rows[y];
-                        List<int> temp3 = new List<int>();
+                        
                         if (x <= 2 && y <= 2)
                         {
-                            temp3 = cells[0];
+                            g = 0;
+                            temp3 = cells[g];
                         }
-                        if (x <= 2 && y <=5)
+                        else if (x <= 2 && y <=5)
                         {
-                            temp3 = cells[1];
+                            g = 1;
+                            temp3 = cells[g];
                         }
-                        if (x <= 2 && y <= 8)
+                        else if (x <= 2 && y <= 8)
                         {
-                            temp3 = cells[2];
+                            g = 2;
+                            temp3 = cells[g];
                         }
-                        if (x <= 5 && y <=2)
+                        else if (x <= 5 && y <=2)
                         {
-                            temp3 = cells[3];
+                            g = 3;
+                            temp3 = cells[g];
                         }
-                        if (x <= 5 && y <= 5)
+                        else if (x <= 5 && y <= 5)
                         {
-                            temp3 = cells[4];
+                            g = 4;
+                            temp3 = cells[g];
                         }
-                        if (x <= 5 && y<=8)
+                        else if (x <= 5 && y<=8)
                         {
-                            temp3 = cells[5];
+                            g = 5;
+                            temp3 = cells[g];
                         }
-                        if (x <= 8 && y <= 2)
+                        else if (x <= 8 && y <= 2)
                         {
-                            temp3 = cells[6];
+                            g = 6;
+                            temp3 = cells[g];
                         }
-                        if (x <= 8 && y <= 5)
+                        else if (x <= 8 && y <= 5)
                         {
-                            temp3 = cells[7];
+                            g = 7;
+                            temp3 = cells[g];
                         }
-                        if (x <= 8 && y <= 8)
+                        else if (x <= 8 && y <= 8)
                         {
-                            temp3 = cells[8];
+
+                            g = 8;
+                            temp3 = cells[g];
+                        }
+                        for(int i = 0; i < 1000; i++)
+                        {
+                            
+                                int a = rnd.Next(0, temp1.Count);
+                                int a1 = temp1[a];
+                                Console.WriteLine(a1 + " cols");
+                                int b = rnd.Next(0, temp2.Count);
+                                int b1 = temp2[b];
+                                Console.WriteLine(b1 + " rows");
+                                int c = rnd.Next(0, temp3.Count);
+                                int c1 = temp3[c];
+                          
+                            Console.WriteLine(c1 + " cells");
+                            if (a1 == b1 && b1 == c1)
+                            {
+                                board[x, y] = a1;
+                                cols[x].Remove(a1);
+                                rows[y].Remove(b1);
+                                cells[g].Remove(c1);
+                                Suck++;
+                                
+                                Console.WriteLine("match");
+                                
+                                break;
+                            }
                         }
                     }
-                }
+             if(Suck == 81)
+                    {
+                        cont = false;
+                    }
+                        }
             }
 
         }
