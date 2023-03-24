@@ -9,7 +9,6 @@ namespace Sodoku
     {
         static void Main(string[] args)
         {
-            int Suck = 0;
             int g = 0;
             List<int> temp3 = new List<int>();
             List<int> temp2 = new List<int>();
@@ -21,7 +20,7 @@ namespace Sodoku
             Random rnd = new Random();
             bool cont = true;
             int count = 0;
-            bool ohno = false;
+            int test = 0;
 
 
             for (int x = 0; x < 9; x++)
@@ -38,6 +37,18 @@ namespace Sodoku
             
             while(cont)
             {
+                for (int x = 0; x < 9; x++)
+                {
+                    rows[x].Clear();
+                    cols[x].Clear();
+                    cells[x].Clear();
+                    for (int y = 0; y < 9; y++)
+                    {
+                        board[x, y] = 0;
+                    }
+                }
+                Console.WriteLine("test " + test);
+                test++;
                 for (int x = 0; x < 9; x++)
                 {
                     for (int y = 1; y < 10; y++)
@@ -76,33 +87,16 @@ namespace Sodoku
                             
                             if (a1 == b1 && b1 == c1)
                             {
-                                Console.WriteLine(x + " " + y);
+
                                 board[x, y] = a1;
                                 cells[g].Remove(a1);
                                 cols[x].Remove(a1);
                                 rows[y].Remove(a1);
-                                
-                                
-                                
-
-                                for(int h = 0; h < 9; h++)
-                                {
-                                    for(int k = 0; k < 9; k++)
-                                    {
-                                        Console.Write(board[h, k] + "\t");
-                                    }
-                                    Console.WriteLine();
-                                }
-                                
-                                Console.WriteLine("match");
-
                                 break;
                             }
                         }
                     }
                 }
-
-                // check if board is complete
                 count = 0;
                 for (int x = 0; x < 9; x++)
                 {
@@ -119,6 +113,16 @@ namespace Sodoku
                     cont = false;
                 }
             }
+            for (int x = 0; x < 9; x++)
+            {
+                for (int y = 0; y < 9; y++)
+                {
+                    Console.Write(board[x, y]);
+                    Console.Write("\t");
+                }
+                Console.WriteLine();
+            }
+
         }
     }
 }
