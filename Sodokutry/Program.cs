@@ -117,10 +117,26 @@ namespace Sodoku
             {
                 for (int y = 0; y < 9; y++)
                 {
+                    
+                    if(y == 2 || y == 5)
+                    {
                     Console.Write(board[x, y]);
                     Console.Write("\t");
+                    Console.Write (" | ");
+                        Console.Write("\t");
+                    }
+                    else
+                    {
+                        Console.Write(board[x, y]);
+                        Console.Write("\t");
+                    }
                 }
                 Console.WriteLine();
+                if (x == 2 || x == 5)
+                {
+                    Console.WriteLine("---------------------------------------------------------------------------------");
+                }
+
             }
 
         }
